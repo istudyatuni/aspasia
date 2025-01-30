@@ -17,9 +17,11 @@ use super::WebVttCue;
 #[derive(Debug)]
 enum WebVttBlock<'a> {
     Cue(WebVttCue),
+    #[expect(unused)]
     Note(String),
     Style(String),
     Region(String),
+    #[expect(unused)]
     Invalid(&'a str),
 }
 
