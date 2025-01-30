@@ -22,7 +22,7 @@ use crate::{
 use super::{convert::strip_formatting_tags, parse::parse_ass};
 
 /// Advanced SubStation Alpha v4+ (.ass) subtitle
-#[derive(Debug, Builder)]
+#[derive(Debug, Default, Builder)]
 pub struct AssSubtitle {
     /// Script info
     #[builder(default)]
@@ -424,14 +424,6 @@ impl FromStr for AssSubtitle {
         let reader = BufReader::new(s.as_bytes());
 
         Ok(parse_ass(reader))
-    }
-}
-
-impl Default for AssSubtitle {
-    fn default() -> Self {
-        Self::builder()
-            .script_info(AssScriptInfo::default())
-            .build()
     }
 }
 

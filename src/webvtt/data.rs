@@ -189,12 +189,6 @@ impl FromStr for WebVttSubtitle {
     }
 }
 
-impl Default for WebVttSubtitle {
-    fn default() -> Self {
-        Self::builder().build()
-    }
-}
-
 impl From<&AssSubtitle> for WebVttSubtitle {
     fn from(value: &AssSubtitle) -> Self {
         Self {

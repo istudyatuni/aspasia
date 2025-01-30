@@ -22,7 +22,7 @@ use crate::{
 use super::{convert::strip_formatting_tags, parse::parse_ssa};
 
 /// SubStation Alpha v4 (.ssa) subtitle
-#[derive(Debug, Builder)]
+#[derive(Debug, Default, Builder)]
 pub struct SsaSubtitle {
     /// Script info
     #[builder(default)]
@@ -410,14 +410,6 @@ impl FromStr for SsaSubtitle {
         let reader = BufReader::new(s.as_bytes());
 
         Ok(parse_ssa(reader))
-    }
-}
-
-impl Default for SsaSubtitle {
-    fn default() -> Self {
-        Self::builder()
-            .script_info(SsaScriptInfo::default())
-            .build()
     }
 }
 
