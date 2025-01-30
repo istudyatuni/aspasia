@@ -142,15 +142,15 @@ pub struct AssStyle {
     /// Height scale of text
     pub scale_y: i64,
     /// Font spacing of text
-    pub spacing: i64,
+    pub spacing: f64,
     /// Number of degrees to rotate text by
     pub angle: f64,
     /// Style of text border
     pub border_style: i64,
     /// Width of text outline
-    pub outline: i64,
+    pub outline: f64,
     /// Depth of text shadow
-    pub shadow: i64,
+    pub shadow: f64,
     /// Alignment of text on screen
     pub alignment: i64,
     /// Left margin in pixels

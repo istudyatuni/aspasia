@@ -161,31 +161,31 @@ fn parse_style_line(input: &str) -> IResult<&str, AssCategory> {
             tuple((tag_no_case("Style"), space0, char(':'), space0)),
             pair(
                 tuple((
-                    terminated(take_until(","), pair(char(','), space0)),
-                    terminated(take_until(","), pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(take_until(","), pair(char(','), space0)),
-                    terminated(take_until(","), pair(char(','), space0)),
-                    terminated(take_until(","), pair(char(','), space0)),
-                    terminated(take_until(","), pair(char(','), space0)),
-                    terminated(parse_reverse_bool, pair(char(','), space0)),
-                    terminated(parse_reverse_bool, pair(char(','), space0)),
-                    terminated(parse_reverse_bool, pair(char(','), space0)),
-                    terminated(parse_reverse_bool, pair(char(','), space0)),
+                    terminated(take_until(","), pair(char(','), space0)), // Name
+                    terminated(take_until(","), pair(char(','), space0)), // Fontname
+                    terminated(i64, pair(char(','), space0)),             // Fontsize
+                    terminated(take_until(","), pair(char(','), space0)), // PrimaryColour
+                    terminated(take_until(","), pair(char(','), space0)), // SecondaryColour
+                    terminated(take_until(","), pair(char(','), space0)), // OutlineColour
+                    terminated(take_until(","), pair(char(','), space0)), // BackColour
+                    terminated(parse_reverse_bool, pair(char(','), space0)), // Bold
+                    terminated(parse_reverse_bool, pair(char(','), space0)), // Italic
+                    terminated(parse_reverse_bool, pair(char(','), space0)), // Underline
+                    terminated(parse_reverse_bool, pair(char(','), space0)), // StrikeOut
                 )),
                 tuple((
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(double, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    terminated(i64, pair(char(','), space0)),
-                    i64,
+                    terminated(i64, pair(char(','), space0)),    // ScaleX
+                    terminated(i64, pair(char(','), space0)),    // ScaleY
+                    terminated(double, pair(char(','), space0)), // Spacing
+                    terminated(double, pair(char(','), space0)), // Angle
+                    terminated(i64, pair(char(','), space0)),    // BorderStyle
+                    terminated(double, pair(char(','), space0)), // Outline
+                    terminated(double, pair(char(','), space0)), // Shadow
+                    terminated(i64, pair(char(','), space0)),    // Alignment
+                    terminated(i64, pair(char(','), space0)),    // MarginL
+                    terminated(i64, pair(char(','), space0)),    // MarginR
+                    terminated(i64, pair(char(','), space0)),    // MarginV
+                    i64,                                         // Encoding
                 )),
             ),
         ),
