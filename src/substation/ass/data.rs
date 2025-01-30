@@ -374,7 +374,7 @@ impl Display for AssSubtitle {
             writeln!(f, "[Events]")?;
             writeln!(
                 f,
-                "Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text"
+                "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
             )?;
             for event in &self.dialogue {
                 writeln!(f, "{event}")?;
@@ -700,7 +700,7 @@ impl Display for AssScriptInfo {
             write!(f, "\nUpdate Details: {update_details}")?;
         }
         if let Some(script_type) = &self.script_type {
-            write!(f, "\nScript Type: {script_type}")?;
+            write!(f, "\nScriptType: {script_type}")?;
         }
         if let Some(collisions) = &self.collisions {
             write!(f, "\nCollisions: {collisions}")?;
@@ -735,7 +735,7 @@ impl Display for AssStyle {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
             f,
-            "{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}",
+            "Style: {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}",
             self.name,
             self.fontname,
             self.fontsize,

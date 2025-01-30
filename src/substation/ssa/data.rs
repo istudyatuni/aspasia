@@ -686,7 +686,7 @@ impl Display for SsaScriptInfo {
             write!(f, "\nUpdate Details: {update_details}")?;
         }
         if let Some(script_type) = &self.script_type {
-            write!(f, "\nScript Type: {script_type}")?;
+            write!(f, "\nScriptType: {script_type}")?;
         }
         if let Some(collisions) = &self.collisions {
             write!(f, "\nCollisions: {collisions}")?;
