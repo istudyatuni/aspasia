@@ -1,6 +1,6 @@
 use std::{borrow::Cow, fmt::Display, fs::File, io::BufReader, path::Path, str::FromStr};
 
-use buildstructor::Builder;
+use bon::Builder;
 use encoding_rs::Encoding;
 use encoding_rs_io::DecodeReaderBytesBuilder;
 

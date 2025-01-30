@@ -1,6 +1,6 @@
 use std::{borrow::Cow, fmt::Display, fs::File, io::BufReader, path::Path, str::FromStr};
 
-use buildstructor::Builder;
+use bon::Builder;
 use encoding_rs::Encoding;
 use encoding_rs_io::DecodeReaderBytesBuilder;
 
@@ -25,23 +25,40 @@ use super::{convert::strip_formatting_tags, parse::parse_ssa};
 #[derive(Debug, Builder)]
 pub struct SsaSubtitle {
     /// Script info
+    #[builder(default)]
     script_info: SsaScriptInfo,
+
     // Store different event types separately so that we can return dialogue only without having to filter
     /// Dialogue events
+    #[builder(default)]
     dialogue: Vec<SsaEvent>,
+
     /// Picture events
+    #[builder(default)]
     pictures: Vec<SsaEvent>,
+
     /// Sound events
+    #[builder(default)]
     sounds: Vec<SsaEvent>,
+
     /// Movie events
+    #[builder(default)]
     movies: Vec<SsaEvent>,
+
     /// Command events
+    #[builder(default)]
     commands: Vec<SsaEvent>,
+
     /// Styles
+    #[builder(default)]
     styles: Vec<SsaStyle>,
+
     /// Embedded font data
+    #[builder(default)]
     fonts: Vec<SubStationFont>,
+
     /// Embedded graphics data
+    #[builder(default)]
     graphics: Vec<SubStationGraphic>,
 }
 
@@ -504,7 +521,11 @@ impl From<&WebVttSubtitle> for SsaSubtitle {
     /// All other tags and styles are discarded.
     fn from(value: &WebVttSubtitle) -> Self {
         SsaSubtitle::builder()
-            .script_info(SsaScriptInfo::builder().and_title(value.header()).build())
+            .script_info(
+                SsaScriptInfo::builder()
+                    .maybe_title(value.header().cloned())
+                    .build(),
+            )
             .dialogue(
                 value
                     .events()
@@ -713,7 +734,9 @@ impl Display for SsaScriptInfo {
 
 impl Default for SsaScriptInfo {
     fn default() -> Self {
-        SsaScriptInfo::builder().script_type("v4.00").build()
+        SsaScriptInfo::builder()
+            .script_type("v4.00".to_string())
+            .build()
     }
 }
 
